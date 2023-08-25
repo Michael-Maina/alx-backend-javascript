@@ -14,6 +14,7 @@ const app = http.createServer((req, res) => {
         res.write(`Number of students in SWE: ${data.sweStudents.length}. List: ${data.sweStudents.join(', ')}`);
         res.end();
       }).catch((error) => {
+        res.statusCode = 500;
         res.end(error.message);
       })
   }

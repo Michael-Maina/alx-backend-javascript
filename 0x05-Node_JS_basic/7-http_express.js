@@ -18,10 +18,8 @@ app.get('/students', async (req, res) => {
     res.write(`Number of students in SWE: ${data.sweStudents.length}. List: ${data.sweStudents.join(', ')}`);
     res.end();
   }).catch((error) => {
-    res.write(error.message);
-  })
-  .finally(() => {
-    res.end();
+    res.statusCode = 500;
+    res.send(error.message);
   })
 });
 
