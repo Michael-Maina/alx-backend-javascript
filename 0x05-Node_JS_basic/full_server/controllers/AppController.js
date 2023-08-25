@@ -3,4 +3,4 @@ export default class AppController {
     response.statusCode = 200;
     response.send('Hello Holberton School!');
   }
-};
+}

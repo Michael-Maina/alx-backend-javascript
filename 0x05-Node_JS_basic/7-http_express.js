@@ -1,5 +1,6 @@
 const express = require('express');
 const students = require('./3-read_file_async');
+
 const app = express();
 
 app.get('/', (req, res) => {
@@ -20,7 +21,7 @@ app.get('/students', async (req, res) => {
   }).catch((error) => {
     res.statusCode = 500;
     res.send(error.message);
-  })
+  });
 });
 
 app.listen(1245, '127.0.0.1');

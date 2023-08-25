@@ -12,21 +12,21 @@ class StudentsController {
       res.end();
     }).catch((err) => {
       res.send(err.message);
-    })
+    });
   }
 
   static getAllStudentsByMajor(req, res) {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
-    let { major } = req.params;
+    const { major } = req.params;
     if (major !== 'CS' && major !== 'SWE') {
       res.statusCode = 500;
       res.send('Major parameter must be CS or SWE\n');
     } else {
-        readDatabase('./databse.csv').then((data) => {
-          res.send(`List: ${data[major].join(',')}\n`);
-        }).catch((err) => res.send(err.message));
-      }
+      readDatabase('./databse.csv').then((data) => {
+        res.send(`List: ${data[major].join(',')}\n`);
+      }).catch((err) => res.send(err.message));
+    }
   }
 }
 
