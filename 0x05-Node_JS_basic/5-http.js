@@ -15,6 +15,7 @@ const app = http.createServer((req, res) => {
       } else {
         res.statusCode = 200;
         const students = data.toString().split('\n')
+          .filter((line) => line.length > 0)
           .map((line) => line.split(','))
           .slice(1)
           .map((student) => ({

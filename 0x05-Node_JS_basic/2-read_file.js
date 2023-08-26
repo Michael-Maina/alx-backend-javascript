@@ -4,6 +4,7 @@ function countStudents(path) {
   try {
     const data = fs.readFileSync(path, 'utf-8');
     const students = data.split('\n')
+      .filter((line) => line.length > 0)
       .map((line) => line.split(','))
       .slice(1)
       .map((student) => ({
