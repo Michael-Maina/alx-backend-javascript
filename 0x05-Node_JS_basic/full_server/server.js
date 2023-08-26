@@ -5,6 +5,6 @@ const app = express();
 
 app.use(router);
 
-app.listen(1245, () => {});
+app.listen(1245);
 
 export default app;

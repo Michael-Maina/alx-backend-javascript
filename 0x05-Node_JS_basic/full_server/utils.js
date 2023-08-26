@@ -24,7 +24,7 @@ export default function readDatabase(path) {
         for (const major of majors) {
           majorStudents[major] = [students.filter((student) => student.field === major)];
         }
-        resolve();
+        resolve(majorStudents);
       }
     });
   });
