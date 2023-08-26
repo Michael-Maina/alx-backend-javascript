@@ -1,5 +1,5 @@
 const express = require('express');
-const students = require('./3-read_file_async');
+const fs = require('fs');
 
 const app = express();
 
@@ -10,13 +10,13 @@ app.get('/', (req, res) => {
 });
 
 app.get('/students', async (req, res) => {
-  res.statusCode = 200;
   res.write('This is the list of our students\n');
-    fs.readFile(process.argv[2], (error, data) => {
-      if (error) {
-        res.statusCode = 500;
-        res.end('Cannot load the database');
-      } else {
+  fs.readFile(process.argv[2], (error, data) => {
+    if (error) {
+      res.statusCode = 500;
+      res.end('Cannot load the database');
+    } else {
+      res.statusCode = 200;
       const students = data.toString().split('\n')
         .map((line) => line.split(','))
         .slice(1)
@@ -39,9 +39,9 @@ app.get('/students', async (req, res) => {
       res.write(`Number of students in CS: ${csStudents.length}. List: ${csStudents.join(', ')}\n`);
       res.write(`Number of students in SWE: ${sweStudents.length}. List: ${sweStudents.join(', ')}`);
       res.end();
-      }
-    })
-})
+    }
+  });
+});
 
 app.listen(1245, '127.0.0.1');
 
